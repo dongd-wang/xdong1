@@ -20,11 +20,11 @@ typer = "^0.4.1"
 requests = "^2.27.1"
 gunicorn = "^20.1.0"
 fastapi-utils = "^0.2.1"
-uvicorn = "^0.17.6"
 aiofiles = "^0.8.0"
 psutil = "^5.9.0"
 lockfile = "^0.12.2"
 websockets = "^10.3"
+uvicorn = {version = "^0.17.6", extras = ["standard"]}
 
 [tool.poetry.dev-dependencies]
 
