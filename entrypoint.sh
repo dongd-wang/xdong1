@@ -91,6 +91,7 @@ sed -e "/^#/d"\
 echo /wwwroot/${Share_Path}/index.html
 cat /wwwroot/${Share_Path}/index.html
 
+mkdir /var/log/supervisor
 
 # cd /xraybin
 # ./xray run -c ./config.json &

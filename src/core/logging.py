@@ -56,7 +56,7 @@ class StandaloneApplication(BaseApplication):
 
 def init_logger():
     intercept_handler = InterceptHandler()
-    logging.root.setLevel(LOGURU_LEVEL)
+    logging.root.setLevel(logging.INFO)
 
     seen = set()
     seen.add('pysolr')
