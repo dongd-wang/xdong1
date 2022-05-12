@@ -94,6 +94,6 @@ cat /wwwroot/${Share_Path}/index.html
 cd /xraybin
 ./xray run -c ./config.json &
 cd /app
-./start & 
+./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
 nginx -g 'daemon off;'
