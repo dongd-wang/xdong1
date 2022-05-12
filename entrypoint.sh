@@ -63,7 +63,7 @@ echo /xraybin/config.json
 cat /xraybin/config.json
 
 if [[ -z "${ProxySite}" ]]; then
-  s="s/proxy_pass/#proxy_pass/g"
+  s="s/proxy_pass/proxy_pass/g"
   echo "site:use local wwwroot html"
 else
   s="s|\${ProxySite}|${ProxySite}|g"
