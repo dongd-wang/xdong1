@@ -13,7 +13,7 @@ spec:
         app: ray
     spec:
       containers:
-      - image: registry.cloud.okteto.net/lwang233/ray:latest
+      - image: okteto.dev/ray:latest
         name: ray
         ports:
         - containerPort: 8080
