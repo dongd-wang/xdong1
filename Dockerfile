@@ -44,9 +44,4 @@ WORKDIR /app
 
 RUN chmod +x /entrypoint.sh
 
-RUN chown -R nginx:nginx /app
-RUN chown -R nginx:nginx /conf
-RUN chown -R nginx:nginx /wwwroot
-USER nginx:nginx
-
 CMD /entrypoint.sh
