@@ -198,7 +198,7 @@ class GunicornMonitor():
         #         return
 
 
-def webserver(use_newrelic=False):
+def webserver():
 
     from resources.gunicorn_conf import log_data
 
@@ -212,35 +212,24 @@ def webserver(use_newrelic=False):
             Workers: {num_workers} {workerclass}
             Host: {hostname}:{port}
             Timeout: {worker_timeout}
-            NewRelic_Enabled: {newrelic} \
         '''.format(
                 num_workers=log_data.get('workers'),
                 workerclass=log_data.get('worker_class'),
                 hostname=log_data.get('host'),
                 port=log_data.get('port'),
                 worker_timeout=log_data.get('timeout'),
-                newrelic=use_newrelic,
             )
         )
     )
-
-    if use_newrelic:
-        run_args = [
-            'newrelic-admin', 
-            'run-program'
-            ]
-    else:
-        run_args = [
-            sys.executable,
-            '-m',
-        ]
-    run_args += [
+    run_args = [
+        sys.executable,
+        '-m',
         'gunicorn',
         '--config',
         'python:resources.gunicorn_conf',
     ]
 
-    run_args += ["search.main:app"]
+    run_args += ["src.main:app"]
 
     gunicorn_master_proc: psutil.Process = None
 

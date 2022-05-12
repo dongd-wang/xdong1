@@ -25,7 +25,7 @@ def version():
 @app.command()
 def runserver():
     from src.commands.webserver_command import webserver
-    webserver(True)
+    webserver()
 
 if __name__ == "__main__":
     app()
