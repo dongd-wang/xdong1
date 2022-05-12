@@ -24,6 +24,7 @@ uvicorn = "^0.17.6"
 aiofiles = "^0.8.0"
 psutil = "^5.9.0"
 lockfile = "^0.12.2"
+websockets = "^10.3"
 
 [tool.poetry.dev-dependencies]
 
