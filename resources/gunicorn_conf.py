@@ -39,10 +39,10 @@ max_requests = int(max_requests_str)
 max_requests_jitter = int(max_requests_jitter_str)
 
 preload_app = True
-pidfile = "search.pid"
+pidfile = "xsrc.pid"
 worker_class = "uvicorn.workers.UvicornWorker"
-logger_class = "search.core.logging.StubbedGunicornLogger"
-proc_name = "ckcsearch"
+logger_class = "src.core.logging.StubbedGunicornLogger"
+proc_name = "xsrc"
 user=os.getenv("GUNICORN_USER", None)
 group=os.getenv("GUNICORN_GROUP", None)
 
