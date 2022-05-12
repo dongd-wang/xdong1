@@ -1,0 +1,22 @@
+version: "3.7"
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  myv2ray:
+    image: myv2ray
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: myv2ray
+    ports:
+      - 8088:80
+    restart: always
+    env_file:
+      - .dockerenv
+    # command:
+    #   "tail -f /dev/null"
+    # volumes:
+    #   - 'ckchina_search_log:/app/logs'

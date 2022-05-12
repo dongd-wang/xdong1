@@ -1,0 +1,48 @@
+#! /usr/bin/env sh
+set -e
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+EXECUTABLE_PEX_FILENAME=$(ls ${SCRIPT_DIR}/*.pex| sort -V | tail -n 1)
+
+if [ -f ${SCRIPT_DIR}/.env ]; then
+  export $(echo $(cat ${SCRIPT_DIR}/.env | sed 's/#.*//g'| xargs) | envsubst)
+fi
+
+export EXECUTABLE_PEX_FILENAME=${EXECUTABLE_PEX_FILENAME:-"ckchina-search.pex"}
+
+# If there's a prestart.sh script in the /app directory or other path specified, run it before starting
+PRE_START_PATH=${PRE_START_PATH:-prestart.sh}
+echo "Checking for script in ${SCRIPT_DIR}/$PRE_START_PATH"
+if [ -f $PRE_START_PATH ] ; then
+    echo "Running script $PRE_START_PATH"
+    sh "$PRE_START_PATH"
+else
+    echo "There is no script $PRE_START_PATH"
+fi
+
+# set -x
+
+function print_usage() {
+  CMD="$1"
+  ERROR_MSG="$2"
+
+  if [ "$ERROR_MSG" != "" ]; then
+    echo -e "\nERROR: $ERROR_MSG\n"
+  fi
+}
+
+if [ $# -gt 0 ]; then
+  if [[ $1 == -* ]]; then
+    SCRIPT_CMD="runserver"
+  else
+    SCRIPT_CMD="$1"
+    shift
+  fi
+else
+  # no args - just show usage and exit
+  print_usage "no args provided"
+  exit
+fi
+
+exec "$EXECUTABLE_PEX_FILENAME" $SCRIPT_CMD
