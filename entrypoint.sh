@@ -91,10 +91,6 @@ sed -e "/^#/d"\
 echo /wwwroot/${Share_Path}/index.html
 cat /wwwroot/${Share_Path}/index.html
 
-sed "[include]
-files = /etc/supervisor/*.conf" > /etc/supervisord.conf
-
-cp -r /config/supervisor /etc/supervisor
 
 # cd /xraybin
 # ./xray run -c ./config.json &

@@ -35,7 +35,9 @@ RUN set -ex\
 COPY scripts/* /app/
 
 COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
-COPY conf/ /conf
+COPY conf /conf
+COPY conf/supervisord.conf /etc/
+COPY conf/supervisor/ /etc/supervisor/
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 8000
