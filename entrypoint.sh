@@ -91,9 +91,14 @@ sed -e "/^#/d"\
 echo /wwwroot/${Share_Path}/index.html
 cat /wwwroot/${Share_Path}/index.html
 
-cd /xraybin
-./xray run -c ./config.json &
-cd /app
-./start runserver & 
+sed "[include]
+files = /etc/supervisor/*.conf" > /etc/supervisord.conf
+
+cp -r /config/supervisor /etc/supervisor
+
+# cd /xraybin
+# ./xray run -c ./config.json &
+# cd /app
+# ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
 nginx -g 'daemon off;'

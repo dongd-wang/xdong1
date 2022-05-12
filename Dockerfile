@@ -30,7 +30,7 @@ RUN set -ex\
     && apt-get install -y wget unzip qrencode\
     && apt-get install -y shadowsocks-libev\
     && apt-get install -y nginx\
-    && apt-get autoremove -y
+    && apt-get autoremove -y && pip install supervisor
 
 COPY scripts/* /app/
 
