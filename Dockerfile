@@ -33,8 +33,7 @@ RUN set -ex\
     && apt-get autoremove -y
 
 COPY scripts/* /app/
-RUN chown -R nobody:nogroup /app
-USER nobody:nogroup
+
 
 COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
 COPY conf/ /conf
@@ -45,5 +44,8 @@ EXPOSE 8000
 WORKDIR /app
 
 RUN chmod +x /entrypoint.sh
+
+RUN chown -R nobody:nogroup /app
+USER nobody:nogroup
 
 CMD /entrypoint.sh
