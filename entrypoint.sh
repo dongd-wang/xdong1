@@ -97,6 +97,6 @@ mkdir /var/log/supervisor
 # ./xray run -c ./config.json &
 # cd /app
 # ./start runserver & 
-# rm -rf /etc/nginx/sites-enabled/default
+rm -rf /etc/nginx/sites-enabled/default
 # nginx -g 'daemon off;'
 supervisord -c /etc/supervisord.conf
