@@ -34,7 +34,6 @@ RUN set -ex\
 
 COPY scripts/* /app/
 
-
 COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
 COPY conf/ /conf
 COPY entrypoint.sh /entrypoint.sh
@@ -45,7 +44,9 @@ WORKDIR /app
 
 RUN chmod +x /entrypoint.sh
 
-RUN chown -R nobody:nogroup /app
-USER nobody:nogroup
+RUN chown -R nginx:nginx /app
+RUN chown -R nginx:nginx /conf
+RUN chown -R nginx:nginx /wwwroot
+USER nginx:nginx
 
 CMD /entrypoint.sh

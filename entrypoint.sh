@@ -38,8 +38,8 @@ else
   VER="v$VER"
 fi
 
-mkdir /xraybin
-cd /xraybin
+mkdir xraybin
+cd xraybin
 RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
 echo ${RAY_URL}
 wget --no-check-certificate ${RAY_URL}
@@ -58,9 +58,9 @@ sed -e "/^#/d"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
-    /conf/Xray.template.json >  /xraybin/config.json
-echo /xraybin/config.json
-cat /xraybin/config.json
+    /conf/Xray.template.json >  /app/xraybin/config.json
+echo /app/xraybin/config.json
+cat /app/xraybin/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/#proxy_pass/g"
@@ -91,7 +91,9 @@ sed -e "/^#/d"\
 echo /wwwroot/${Share_Path}/index.html
 cat /wwwroot/${Share_Path}/index.html
 
-cd /xraybin
+cd /app/xraybin
 ./xray run -c ./config.json &
+cd /app
+./start &
 rm -rf /etc/nginx/sites-enabled/default
 nginx -g 'daemon off;'
