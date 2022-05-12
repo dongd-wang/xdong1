@@ -69,5 +69,12 @@ def init_logger():
             logging.getLogger(name).handlers = [intercept_handler]
     logger.remove()
     
-    logger.add(sys.stdout, level=logging.INFO, backtrace=True, diagnose=True, enqueue=True, 
-                filter=lambda x: not (x['name'].startswith('uvicorn')))
+    logger.add(sys.stdout, backtrace=True, diagnose=True, enqueue=True, filter=lambda x: not (x['name'].startswith('uvicorn')))
+    logger.add('logs/server.log', rotation="00:00",  retention="10 days", enqueue=True, 
+                encoding='UTF-8', backtrace=True, diagnose=True, filter=lambda x: not x['name'].startswith('uvicorn'))
+
+    logger.add('logs/access.log', rotation="00:00",  retention="15 days", enqueue=True, encoding='UTF-8',
+                backtrace=True, diagnose=True, filter=lambda x: x['name'].startswith('uvicorn'))
+
+    logger.add('logs/error.log', enqueue=True, encoding='UTF-8', backtrace=True, diagnose=True,
+                filter=lambda x: 40==x['level'].no)
