@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ray
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ray
@@ -32,3 +32,5 @@ spec:
           value: "$Vmess_Path"
         - name: Share_Path
           value: "$Share_Path"
+        - name: SS_URL
+          value: "$SS_URL"
