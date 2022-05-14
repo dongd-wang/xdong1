@@ -45,6 +45,7 @@ def generate():
 
 @router.get('/sub')
 async def get_sub():
+    generate()
     return FileResponse(path='.tmp/subscribe', media_type='application/octet-stream', filename='subscribe')
 
 
