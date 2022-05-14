@@ -91,6 +91,9 @@ sed -e "/^#/d"\
 echo /wwwroot${Share_Path}/index.html
 cat /wwwroot${Share_Path}/index.html
 
+mkdir /app/.tmp
+ls -al /app
+
 mkdir /var/log/supervisor
 
 # cd /xraybin
