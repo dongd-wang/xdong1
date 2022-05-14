@@ -22,15 +22,15 @@ def generate():
         'Accept-Language' : 'en-US,en;q=0.9',
         'upgrade-insecure-requests': '1'
     }
-    url = os.getenv('SS_URL')
-    resp = requests.get(url, headers=headers)
-    if resp.status_code >= 400:
-        return "hello error"
-    # logger.info(resp.content)
     try:
+        url = os.getenv('SS_URL')
+        resp = requests.get(url, headers=headers)
+        if resp.status_code >= 400:
+            return "hello error"
+        # logger.info(resp.content)
+   
         vmess_url = re.findall('vmess://.*=', resp.content.decode('UTF-8'))
         jsonData = json.loads(base64.b64decode(vmess_url[0][8:]).decode('utf-8'))
-
         quanx_vmess = 'vmess=' + jsonData['add'] + ':' + jsonData['port'] + ', method=' \
             + jsonData['type'] + ', password=' + jsonData['id'] + ', obfs=wss, obfs-host=' \
                 + jsonData['add'] + ', obfs-uri=' + jsonData['path'] \
@@ -40,6 +40,7 @@ def generate():
             f.write(quanx_vmess)
     except Exception as e:
         logger.exception(e)
+        print(e)
         return "hello remote error"
     return "hello world"
 
