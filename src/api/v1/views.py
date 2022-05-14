@@ -22,7 +22,7 @@ def generate():
         'Accept-Language' : 'en-US,en;q=0.9',
         'upgrade-insecure-requests': '1'
     }
-    url = 'https://view.ssfree.ru'
+    url = os.getenv('SS_URL')
     resp = requests.get(url, headers=headers)
     if resp.status_code >= 400:
         return "hello error"
