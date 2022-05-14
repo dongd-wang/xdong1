@@ -27,18 +27,20 @@ def generate():
     if resp.status_code >= 400:
         return "hello error"
     # logger.info(resp.content)
-    vmess_url = re.findall('vmess://.*=', resp.content.decode('UTF-8'))
-    jsonData = json.loads(base64.b64decode(vmess_url[0][8:]).decode('utf-8'))
+    try:
+        vmess_url = re.findall('vmess://.*=', resp.content.decode('UTF-8'))
+        jsonData = json.loads(base64.b64decode(vmess_url[0][8:]).decode('utf-8'))
 
-    quanx_vmess = 'vmess=' + jsonData['add'] + ':' + jsonData['port'] + ', method=' \
-        + jsonData['type'] + ', password=' + jsonData['id'] + ', obfs=wss, obfs-host=' \
-            + jsonData['add'] + ', obfs-uri=' + jsonData['path'] \
-                + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree_' \
-                + str(time.time())
-
-
-    with open('./.tmp/subscribe', 'w', encoding='utf-8') as f:
-        f.write(quanx_vmess)
+        quanx_vmess = 'vmess=' + jsonData['add'] + ':' + jsonData['port'] + ', method=' \
+            + jsonData['type'] + ', password=' + jsonData['id'] + ', obfs=wss, obfs-host=' \
+                + jsonData['add'] + ', obfs-uri=' + jsonData['path'] \
+                    + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree_' \
+                    + str(time.time())
+        with open('.tmp/subscribe', 'w', encoding='utf-8') as f:
+            f.write(quanx_vmess)
+    except Exception as e:
+        logger.exception(e)
+        return "hello remote error"
     return "hello world"
 
 @router.get('/sub')
