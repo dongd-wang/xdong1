@@ -1,4 +1,4 @@
-FROM teddysun/xray
+FROM teddysun/xray:latest
 
 COPY conf/Xray.template.json /conf/
 

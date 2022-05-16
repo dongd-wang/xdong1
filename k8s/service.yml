@@ -7,7 +7,7 @@ metadata:
 spec:
   type: ClusterIP  
   ports:
-  - name: "ray"
+  - name: "nginx"
     port: 8080
   selector:
     app: ray

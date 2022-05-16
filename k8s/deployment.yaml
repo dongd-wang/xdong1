@@ -13,13 +13,36 @@ spec:
         app: ray
     spec:
       containers:
-      - image: okteto.dev/ray:latest
+      - image: okteto.dev/xray:latest
         name: ray
         ports:
         - containerPort: 8080
         env:
+        - name: Vless_UUID
+          value: "$Vless_UUID"
+        - name: Vless_Path
+          value: "$Vless_Path"
+        - name: Vmess_UUID
+          value: "$Vmess_UUID"
+        - name: Vmess_Path
+          value: "$Vmess_Path"
+        - name: Share_Path
+          value: "$Share_Path"
+
+      - name: nginx
+        image: nginx: okteto.dev/nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        env:
         - name: PORT
-          value: "8080"
+          value: "80"
         - name: ProxySite
           value: "$ProxySite"
         - name: Vless_UUID
@@ -32,5 +55,18 @@ spec:
           value: "$Vmess_Path"
         - name: Share_Path
           value: "$Share_Path"
+
+      - name: app
+        image: nginx: okteto.dev/myapp:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        env:
         - name: SS_URL
           value: "$SS_URL"

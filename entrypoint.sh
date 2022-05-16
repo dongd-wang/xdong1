@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#Xray版本
-if [[ -z "${VER}" ]]; then
-  VER="latest"
-fi
-echo ${VER}
-
 if [[ -z "${Vless_Path}" ]]; then
   Vless_Path="/s233"
 fi
@@ -31,36 +25,10 @@ if [[ -z "${Share_Path}" ]]; then
 fi
 echo ${Share_Path}
 
-# if [ "$VER" = "latest" ]; then
-#   VER=`wget -qO- "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | sed -n -r -e 's/.*"tag_name".+?"([vV0-9\.]+?)".*/\1/p'`
-#   [[ -z "${VER}" ]] && VER="v1.2.2"
-# else
-#   VER="v$VER"
-# fi
-
-# mkdir /xraybin
-# cd /xraybin
-# RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
-# echo ${RAY_URL}
-# wget --no-check-certificate ${RAY_URL}
-# unzip Xray-linux-64.zip
-# rm -f Xray-linux-64.zip
-# chmod +x ./xray
-# ls -al
 
 cd /wwwroot
-tar xvf wwwroot.tar.gz
+tar xvf -q wwwroot.tar.gz
 rm -rf wwwroot.tar.gz
-
-
-# sed -e "/^#/d"\
-#     -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
-#     -e "s|\${Vless_Path}|${Vless_Path}|g"\
-#     -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
-#     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
-#     /conf/Xray.template.json >  /xraybin/config.json
-# echo /xraybin/config.json
-# cat /xraybin/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/proxy_pass/g"
@@ -70,8 +38,12 @@ else
   echo "site: ${ProxySite}"
 fi
 
+rm /etc/nginx/conf.d/*
+
 sed -e "/^#/d"\
-    -e "s/\${PORT}/${PORT}/g"\
+    -e "s|\${PORT}|${PORT}|g"\
+    -e "s|\${APP_ADD}|${APP_ADD}|g"\
+    -e "s|\${XRAY_ADD}|${XRAY_ADD}|g"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     -e "s|\${Share_Path}|${Share_Path}|g"\
@@ -89,17 +61,10 @@ sed -e "/^#/d"\
     -e "$s"\
     /conf/share.html > /wwwroot${Share_Path}/index.html
 echo /wwwroot${Share_Path}/index.html
-cat /wwwroot${Share_Path}/index.html
+# cat /wwwroot${Share_Path}/index.html
 
-mkdir /app/.tmp
-ls -al /app
-
-mkdir /var/log/supervisor
-
-# cd /xraybin
-# ./xray run -c ./config.json &
-# cd /app
-# ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
-# nginx -g 'daemon off;'
-supervisord -c /etc/supervisord.conf
+
+nginx -t
+
+nginx -g 'daemon off;'
