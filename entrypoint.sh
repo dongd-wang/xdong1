@@ -31,36 +31,36 @@ if [[ -z "${Share_Path}" ]]; then
 fi
 echo ${Share_Path}
 
-if [ "$VER" = "latest" ]; then
-  VER=`wget -qO- "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | sed -n -r -e 's/.*"tag_name".+?"([vV0-9\.]+?)".*/\1/p'`
-  [[ -z "${VER}" ]] && VER="v1.2.2"
-else
-  VER="v$VER"
-fi
+# if [ "$VER" = "latest" ]; then
+#   VER=`wget -qO- "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | sed -n -r -e 's/.*"tag_name".+?"([vV0-9\.]+?)".*/\1/p'`
+#   [[ -z "${VER}" ]] && VER="v1.2.2"
+# else
+#   VER="v$VER"
+# fi
 
-mkdir /xraybin
-cd /xraybin
-RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
-echo ${RAY_URL}
-wget --no-check-certificate ${RAY_URL}
-unzip Xray-linux-64.zip
-rm -f Xray-linux-64.zip
-chmod +x ./xray
-ls -al
+# mkdir /xraybin
+# cd /xraybin
+# RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
+# echo ${RAY_URL}
+# wget --no-check-certificate ${RAY_URL}
+# unzip Xray-linux-64.zip
+# rm -f Xray-linux-64.zip
+# chmod +x ./xray
+# ls -al
 
 cd /wwwroot
 tar xvf wwwroot.tar.gz
 rm -rf wwwroot.tar.gz
 
 
-sed -e "/^#/d"\
-    -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
-    -e "s|\${Vless_Path}|${Vless_Path}|g"\
-    -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
-    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
-    /conf/Xray.template.json >  /xraybin/config.json
-echo /xraybin/config.json
-cat /xraybin/config.json
+# sed -e "/^#/d"\
+#     -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
+#     -e "s|\${Vless_Path}|${Vless_Path}|g"\
+#     -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
+#     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
+#     /conf/Xray.template.json >  /xraybin/config.json
+# echo /xraybin/config.json
+# cat /xraybin/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/proxy_pass/g"
