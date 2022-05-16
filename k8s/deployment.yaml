@@ -3,7 +3,11 @@ kind: Deployment
 metadata:
   name: ray
 spec:
-  replicas: 2
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: ray
@@ -55,11 +59,19 @@ spec:
           value: "$Vmess_Path"
         - name: Share_Path
           value: "$Share_Path"
+        - name: APP_ADD
+          value: "$APP_ADD"
+        - name: XRAY_ADD
+          value: "$XRAY_ADD"
 
       - name: app
-        image: nginx: okteto.dev/myapp:latest
+        image: okteto.dev/myapp:latest
         ports:
-        - containerPort: 8000
+          - containerPort: 8000
+        command:
+          - "/bin/bash"
+          - "-ce"
+          - "./start runserver"
         resources:
           requests:
             cpu: 100m

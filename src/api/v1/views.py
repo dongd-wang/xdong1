@@ -36,7 +36,7 @@ def generate():
                 + jsonData['add'] + ', obfs-uri=' + jsonData['path'] \
                     + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree_美国_US_' \
                     + str(time.time())
-        with open('.tmp/subscribe', 'w', encoding='utf-8') as f:
+        with open('/tmp/subscribe', 'w', encoding='utf-8') as f:
             f.write(quanx_vmess)
     except Exception as e:
         logger.exception(e)
@@ -47,7 +47,7 @@ def generate():
 @router.get('/sub')
 async def get_sub():
     generate()
-    return FileResponse(path='.tmp/subscribe', media_type='application/octet-stream', filename='subscribe')
+    return FileResponse(path='/tmp/subscribe', media_type='application/octet-stream', filename='subscribe')
 
 
 @router.get('/show')

@@ -27,7 +27,7 @@ echo ${Share_Path}
 
 
 cd /wwwroot
-tar xvf -q wwwroot.tar.gz
+tar xvfq wwwroot.tar.gz
 rm -rf wwwroot.tar.gz
 
 if [[ -z "${ProxySite}" ]]; then
