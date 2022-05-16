@@ -30,7 +30,7 @@ spec:
           value: "$Share_Path"
 
       - name: nginx
-        image: nginx: okteto.dev/nginx:latest
+        image: okteto.dev/nginx:latest
         ports:
         - containerPort: 80
         resources:
