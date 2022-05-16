@@ -20,3 +20,14 @@ services:
     #   "tail -f /dev/null"
     # volumes:
     #   - 'ckchina_search_log:/app/logs'
+  
+  myxray:
+    image: xray
+    build:
+      context: .
+      dockerfile: Dockerfile.xray
+    container_name: xray
+    restart: always
+    env_file:
+      - .dockerenv
+
