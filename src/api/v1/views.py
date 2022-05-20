@@ -1,7 +1,6 @@
 import base64
 import re
 import json
-import requests
 from fastapi.routing import APIRouter
 from fastapi.responses import FileResponse
 from loguru import logger
