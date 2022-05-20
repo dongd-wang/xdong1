@@ -39,8 +39,10 @@ async def generate():
 
 async def get_v2_url():
     try:
+        url = os.getenv('V2_URL')
+        logger.info(url)
         async with httpx.AsyncClient(headers=get_headers()) as client:
-            resp = await client.get(os.getenv('V2_URL'))
+            resp = await client.get(url)
             if resp.status_code >=400:
                 return 'hello v2 error'
             v2_sub_url_list = re.findall('https://shadowshare.v2cross.com/publicserver/servers/temp/.{10,20}<', resp.content.decode('UTF-8'))
