@@ -585,7 +585,7 @@ reference = "aliyun"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d8b52dbb59b4f35927b22869dcb12b54c81cbb7911b41a36acccb1062c39a2de"
+content-hash = "1eaacbadd7456fa07da8adc2231e6727112d3e98df40733894b41ed62f50d304"
 
 [metadata.files]
 aiofiles = [
