@@ -14,10 +14,9 @@ router = APIRouter()
 
 @router.get("/xsrc")
 async def generate():
-    headers = get_headers()
     url = os.getenv('SS_URL')
     async with httpx.AsyncClient(headers=get_headers() ) as client:
-        resp = await httpx.get(url)
+        resp = await client.get(url)
         if resp.status_code >= 400:
             return "hello error"
         # logger.info(resp.content)
@@ -31,7 +30,8 @@ async def generate():
                         + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree_US_美国_' \
                         + str(time.time())
             with open('/tmp/subscribe', 'w', encoding='utf-8') as f:
-                f.write(quanx_vmess)
+                f.write(quanx_vmess + '\n')
+                f.write(vmess_url[0] + '\n')
         except Exception as e:
             logger.exception(e)
     await get_v2_url()
