@@ -82,3 +82,6 @@ spec:
         env:
         - name: SS_URL
           value: "$SS_URL"
+        - name: V2_URL
+          value: "$V2_URL"
+          
