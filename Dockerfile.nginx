@@ -1,0 +1,17 @@
+FROM nginx:1.21.6
+
+COPY conf/nginx.template.conf /conf/
+COPY conf/share.html /conf/
+
+COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
+COPY entrypoint.sh /entrypoint.sh
+
+RUN set -ex\
+    && apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install -y wget unzip qrencode\
+    && apt-get autoremove -y 
+
+RUN chmod +x /entrypoint.sh
+
+CMD /entrypoint.sh

@@ -34,5 +34,5 @@ else
   print_usage "no args provided"
   exit
 fi
-
+echo "Start"
 exec "$EXECUTABLE_PEX_FILENAME" $SCRIPT_CMD

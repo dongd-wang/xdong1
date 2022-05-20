@@ -23,27 +23,9 @@ RUN mkdir /app && \
     mkdir /app/logs
 
 COPY --from=builder /app/dist/xsrc-* /app/
-
-RUN set -ex\
-    && apt-get update -y \
-    && apt-get upgrade -y \
-    && apt-get install -y wget unzip qrencode\
-    && apt-get install -y shadowsocks-libev\
-    && apt-get install -y nginx\
-    && apt-get autoremove -y && pip install supervisor
-
+   
 COPY scripts/* /app/
-
-COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
-COPY conf /conf
-COPY conf/supervisord.conf /etc/
-COPY conf/supervisor/ /etc/supervisor/
-COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 8000
 
 WORKDIR /app
-
-RUN chmod +x /entrypoint.sh
-
-CMD /entrypoint.sh

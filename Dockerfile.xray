@@ -1,11 +1,8 @@
-FROM teddysun/xray
+FROM teddysun/xray:latest
 
 COPY conf/Xray.template.json /conf/
+COPY entrypoint_xray.sh /entrypoint.sh
 
-RUN sed -e "/^#/d"\
-    -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
-    -e "s|\${Vless_Path}|${Vless_Path}|g"\
-    -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
-    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
-    /conf/Xray.template.json >  /etc/xray/config.json
+RUN chmod +x /entrypoint.sh
 
+CMD /entrypoint.sh

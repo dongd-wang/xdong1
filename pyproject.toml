@@ -25,6 +25,7 @@ psutil = "^5.9.0"
 lockfile = "^0.12.2"
 websockets = "^10.3"
 uvicorn = {version = "^0.17.6", extras = ["standard"]}
+httpx = "^0.22.0"
 
 [tool.poetry.dev-dependencies]
 

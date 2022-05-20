@@ -5,19 +5,17 @@ networks:
     driver: bridge
 
 services:
-  myv2ray:
-    image: myv2ray
+  myapp:
+    image: myapp
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: myv2ray
-    ports:
-      - 8088:80
+    container_name: myapp
     restart: always
     env_file:
       - .dockerenv
-    # command:
-    #   "tail -f /dev/null"
+    command:
+      "./start runserver"
     # volumes:
     #   - 'ckchina_search_log:/app/logs'
   
@@ -31,3 +29,17 @@ services:
     env_file:
       - .dockerenv
 
+  nginx:
+    image: nginx
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    restart: always
+    env_file:
+      - .dockerenv 
+    ports:
+      - "8088:${PORT}"
+    depends_on:
+      - myapp
+      - myxray    
