@@ -68,7 +68,7 @@ def get_headers():
 
 @router.get('/sub')
 async def get_sub():
-    generate()
+    await generate()
     return FileResponse(path='/tmp/subscribe', media_type='application/octet-stream', filename='subscribe')
 
 
