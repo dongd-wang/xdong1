@@ -63,8 +63,6 @@ spec:
           value: "$XRAY_ADD"
         - name: BARK_KEY
           value: "$BARK_KEY"
-        - name: BARK_DEVICE_TOKEN
-          value: "$BARK_DEVICE_TOKEN"
 
       - name: app
         image: okteto.dev/myapp:latest
