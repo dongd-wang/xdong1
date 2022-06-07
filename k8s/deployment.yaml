@@ -83,7 +83,7 @@ spec:
         - name: V2_URL
           value: "$V2_URL"
       - name: bark
-        image: finab/bark-server:2.1.0
+        image: finab/bark-server:v2.1.0
         resources:
           requests:
             cpu: 100m
