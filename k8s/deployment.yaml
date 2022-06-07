@@ -84,7 +84,7 @@ spec:
           value: "$SS_URL"
         - name: V2_URL
           value: "$V2_URL"
-     - name: bark
+      - name: bark
         image: finab/bark-server:latest
         ports:
           - containerPort: 8090
