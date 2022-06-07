@@ -47,6 +47,7 @@ sed -e "/^#/d"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     -e "s|\${Share_Path}|${Share_Path}|g"\
+    -e "s|\${BARK_KEY}|${BARK_KEY}|g"\
     -e "$s"\
     /conf/nginx.template.conf > /etc/nginx/conf.d/ray.conf
 echo /etc/nginx/conf.d/ray.conf
