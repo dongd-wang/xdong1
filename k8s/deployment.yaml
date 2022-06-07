@@ -95,3 +95,8 @@ spec:
           limits:
             cpu: 500m
             memory: 500Mi
+        env:
+        - name: BARK_KEY
+          value: "$BARK_KEY"
+        - name: BARK_DEVICE_TOKEN
+          value: "$BARK_DEVICE_TOKEN"
