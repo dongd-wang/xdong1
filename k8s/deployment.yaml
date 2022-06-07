@@ -42,8 +42,8 @@ spec:
             cpu: 100m
             memory: 100Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 200m
+            memory: 200Mi
         env:
         - name: PORT
           value: "80"
@@ -77,8 +77,8 @@ spec:
             cpu: 100m
             memory: 100Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 200m
+            memory: 200Mi
         env:
         - name: SS_URL
           value: "$SS_URL"
@@ -93,8 +93,8 @@ spec:
             cpu: 100m
             memory: 100Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 200m
+            memory: 200Mi
         env:
         - name: BARK_KEY
           value: "$BARK_KEY"
