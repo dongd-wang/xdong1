@@ -19,8 +19,6 @@ spec:
       containers:
       - image: okteto.dev/xray:latest
         name: ray
-        ports:
-        - containerPort: 8080
         env:
         - name: Vless_UUID
           value: "$Vless_UUID"
@@ -68,8 +66,6 @@ spec:
 
       - name: app
         image: okteto.dev/myapp:latest
-        ports:
-          - containerPort: 8000
         command:
           - "/bin/bash"
           - "-ce"
@@ -88,8 +84,6 @@ spec:
           value: "$V2_URL"
       - name: bark
         image: finab/bark-server:latest
-        ports:
-          - containerPort: 8090
         resources:
           requests:
             cpu: 100m
