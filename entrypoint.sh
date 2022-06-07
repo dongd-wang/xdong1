@@ -24,7 +24,6 @@ if [[ -z "${Share_Path}" ]]; then
   Share_Path="/share233"
 fi
 echo ${Share_Path}
-echo ${BARK_DEVICE_TOKEN}
 
 cd /wwwroot
 tar xf wwwroot.tar.gz
