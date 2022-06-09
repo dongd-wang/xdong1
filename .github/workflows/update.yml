@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # If you need to, you can check out your repo to a different location
+      # If you need to, you can check out your repo to a different  location
       - name: Repository Checkout
         uses: actions/checkout@v2
         with:
