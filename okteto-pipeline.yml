@@ -2,3 +2,5 @@ deploy:
   - okteto build -t okteto.dev/ray:latest
   - kubectl apply -f k8s/service.yml
   - envsubst < k8s/deployment.yaml | kubectl apply --force -f -
+  - kubectl rollout restart deploy ray
+  
