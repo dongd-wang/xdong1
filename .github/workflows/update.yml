@@ -5,6 +5,7 @@ name: "Sync main"
 on:
   schedule:
     - cron: '50 0/4 * * *'
+  workflow_dispatch:
 
 jobs:
   run:
@@ -35,3 +36,11 @@ jobs:
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
  
+  call-deploy-workflow:
+    uses: lwang233/xdong1/.github/workflows/main_okteto.yml@main
+    secrets:
+      OKTETO_TOKEN: ${{ secrets.OKTETO_TOKEN }}
+      
+      
+      
+      
