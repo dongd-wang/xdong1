@@ -21,6 +21,8 @@ jobs:
       - name: Update
         run: |
          make assemble
+         git config user.name github-actions[bot]
+         git config user.email github-actions[bot]@users.noreply.github.com
        
 
       # ...and then use the action as you would normally do, but providing the path to the repo
@@ -28,4 +30,13 @@ jobs:
         with:
           message: 'update version'
           add: 'src/version.py --force'
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      - uses: fastify/github-action-merge-dependabot@v2.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           
