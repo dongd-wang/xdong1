@@ -1,0 +1,36 @@
+name: "GitHub Actions update"
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  schedule:
+    - cron: '30 0/4 * * *'
+
+jobs:
+  run:
+    name: Update
+    runs-on: ubuntu-latest
+
+    steps:
+      # If you need to, you can check out your repo to a different  location
+      - name: Repository Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: split
+
+      # You can make whatever type of change to the repo...
+      - name: Update
+        run: |
+         make assemble
+         git config user.name ${{secrets.GIT_USER}}
+         git config user.email ${{secrets.GIT_EMAIL}}
+       
+
+      # ...and then use the action as you would normally do, but providing the path to the repo
+      - uses: EndBug/add-and-commit@v8
+        with:
+          message: 'update version'
+          author_name: ${{secrets.GIT_USER}}
+          author_email: ${{secrets.GIT_EMAIL}}
+          add: 'src/version.py --force'
