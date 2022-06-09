@@ -38,7 +38,7 @@ jobs:
           add: 'src/version.py --force'
           
   call-sub-workflow:
-    uses: lwang233/xdong1/.github/workflows/split_deploy@split
+    uses: lwang233/xdong1/.github/workflows/split_deploy.yml@split
     
 
     
