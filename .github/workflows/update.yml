@@ -4,7 +4,7 @@ name: "GitHub Actions update"
 # events but only for the main branch
 on:
   schedule:
-    - cron: '0 0,12 * * *'
+    - cron: '50 0/4 * * *'
 
 jobs:
   run:
