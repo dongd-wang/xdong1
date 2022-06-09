@@ -15,8 +15,10 @@ jobs:
 
     steps:
       # If you need to, you can check out your repo to a different location
-      - uses: actions/checkout@v3
+      - name: Repository Checkout
+        uses: actions/checkout@v2
         with:
+          ref: ${{ github.head_ref }}
           token: ${{ secrets.PAT }}
 
       # You can make whatever type of change to the repo...
