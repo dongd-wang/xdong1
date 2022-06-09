@@ -30,13 +30,14 @@ jobs:
         with:
           message: 'update version'
           add: 'src/version.py --force'
-          
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
           github_token: ${{ secrets.GIT_TOKEN }}
-          branch: ${{ github.ref }}
-      - uses: fastify/github-action-merge-dependabot@v2.1.1
-        with:
-          github-token: ${{ secrets.GIT_TOKEN }}
+          
+#       - name: Push changes
+#         uses: ad-m/github-push-action@master
+#         with:
+#           github_token: ${{ secrets.GIT_TOKEN }}
+#           branch: ${{ github.ref }}
+#       - uses: fastify/github-action-merge-dependabot@v2.1.1
+#         with:
+#           github-token: ${{ secrets.GIT_TOKEN }}
           
