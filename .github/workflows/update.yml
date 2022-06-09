@@ -32,6 +32,5 @@ jobs:
           message: 'update version'
           author_name: ${{secrets.GIT_USER}}
           author_email: ${{secrets.GIT_EMAIL}}
-          github_token: ${{secrets.PAT}}
           add: 'src/version.py --force'
  
