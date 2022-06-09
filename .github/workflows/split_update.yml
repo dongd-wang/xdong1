@@ -36,7 +36,7 @@ jobs:
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
           
-  call-sub-workflow:
+  call-deploy-workflow:
     uses: lwang233/xdong1/.github/workflows/split_deploy.yml@split
     secrets:
       OKTETO_TOKEN: ${{ secrets.OKTETO_TOKEN }}
