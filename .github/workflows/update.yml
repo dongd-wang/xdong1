@@ -3,7 +3,7 @@ name: "GitHub Actions update"
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
 on:
-  push:
+  pull_request:
     branches: [ main ]
   schedule:
     - cron: '0 0,12 * * *'
@@ -17,8 +17,6 @@ jobs:
       # If you need to, you can check out your repo to a different location
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-          ref: main
           token: ${{ secrets.PAT }}
 
       # You can make whatever type of change to the repo...
