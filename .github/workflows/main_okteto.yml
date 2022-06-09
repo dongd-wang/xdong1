@@ -36,12 +36,12 @@ jobs:
       - name: "Activate Namespace"
         uses: okteto/namespace@latest
         with:
-          name: lwang233
+          namespace: lwang233
 
       - name: "Trigger the pipeline"
         uses: okteto/pipeline@latest
         with:
-          name: pr-${{ github.event.number }}
+          name: deploy
           timeout: 8m
           skipIfExists: false
               
