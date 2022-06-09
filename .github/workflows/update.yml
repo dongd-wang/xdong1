@@ -17,9 +17,6 @@ jobs:
       # If you need to, you can check out your repo to a different location
       - name: Repository Checkout
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.PAT }}
 
       # You can make whatever type of change to the repo...
       - name: Update
@@ -36,13 +33,4 @@ jobs:
           author_name: ${{secrets.GIT_USER}}
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
-          
-#       - name: Push changes
-#         uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.GIT_TOKEN }}
-#           branch: ${{ github.ref }}
-#       - uses: fastify/github-action-merge-dependabot@v2.1.1
-#         with:
-#           github-token: ${{ secrets.GIT_TOKEN }}
-          
+ 
