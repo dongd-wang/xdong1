@@ -5,6 +5,7 @@ name: "Sync split"
 on:
   schedule:
     - cron: '30 0/4 * * *'
+  workflow_dispatch:
 
 jobs:
   run:
