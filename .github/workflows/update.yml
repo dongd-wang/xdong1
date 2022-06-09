@@ -21,16 +21,16 @@ jobs:
       - name: Update
         run: |
          make assemble
-         git config user.name ${{GIT_USER}}
-         git config user.email ${{GIT_EMAIL}}
+         git config user.name ${{secrets.GIT_USER}}
+         git config user.email ${{secrets.GIT_EMAIL}}
        
 
       # ...and then use the action as you would normally do, but providing the path to the repo
       - uses: EndBug/add-and-commit@v9
         with:
           message: 'update version'
-          author_name: ${{GIT_USER}}
-          author_email: ${{GIT_EMAIL}}
+          author_name: ${{secrets.GIT_USER}}
+          author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
           
 #       - name: Push changes
