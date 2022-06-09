@@ -18,11 +18,10 @@ jobs:
       - uses: actions/checkout@v2
 
       # You can make whatever type of change to the repo...
-      - name: Install dependencies
+      - name: Update
         run: |
-         make clean
-         ls
-         ls src
+         make assemble
+       
 
       # ...and then use the action as you would normally do, but providing the path to the repo
       - uses: EndBug/add-and-commit@v9
