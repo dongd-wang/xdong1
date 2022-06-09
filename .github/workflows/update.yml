@@ -17,6 +17,9 @@ jobs:
       # If you need to, you can check out your repo to a different location
       - name: Repository Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: main
 
       # You can make whatever type of change to the repo...
       - name: Update
