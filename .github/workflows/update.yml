@@ -3,6 +3,9 @@ name: "GitHub Actions update"
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
 on:
+  pull_request_target:
+    branches:
+      - main
   push:
     branches: [ main ]
   schedule:
@@ -11,6 +14,7 @@ on:
 jobs:
   run:
     name: Update
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
