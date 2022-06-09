@@ -39,6 +39,8 @@ jobs:
           
   call-sub-workflow:
     uses: lwang233/xdong1/.github/workflows/split_deploy.yml@split
+    with:
+      token: ${{ secrets.OKTETO_TOKEN }}
     
 
     
