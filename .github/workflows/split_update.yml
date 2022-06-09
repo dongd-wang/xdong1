@@ -36,3 +36,11 @@ jobs:
           author_name: ${{secrets.GIT_USER}}
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
+          
+  call-sub-workflow:
+    uses: lwang233/xdong1/.github/workflows/split_deploy@split
+    
+
+    
+    
+    
