@@ -3,8 +3,6 @@ name: "Sync split"
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
 on:
-  push:
-    branches: ["split"]
   schedule:
     - cron: '30 0/4 * * *'
 
@@ -37,11 +35,6 @@ jobs:
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
           
-  call-sub-workflow:
-    uses: lwang233/xdong1/.github/workflows/split_deploy.yml@split
-    with:
-      token: ${{ secrets.OKTETO_TOKEN }}
-    
 
     
     
