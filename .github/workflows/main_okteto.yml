@@ -39,7 +39,7 @@ jobs:
       - name: "Activate Namespace"
         uses: okteto/namespace@latest
         with:
-          namespace: lwang233
+          namespace: dongd-wang
 
       - name: "Trigger the pipeline"
         uses: okteto/pipeline@latest
