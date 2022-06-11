@@ -50,7 +50,7 @@ jobs:
         uses: okteto/pipeline@latest
         with:
           name: xdong1
-          branch: main
+          branch: split
           timeout: 8m
           skipIfExists: false
               
