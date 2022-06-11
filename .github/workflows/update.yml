@@ -29,12 +29,13 @@ jobs:
        
 
       # ...and then use the action as you would normally do, but providing the path to the repo
-      - uses: EndBug/add-and-commit@v8
+      - uses: EndBug/add-and-commit@v9
         with:
           message: 'update version'
           author_name: ${{secrets.GIT_USER}}
           author_email: ${{secrets.GIT_EMAIL}}
           add: 'src/version.py --force'
+          github_token: ${{ secrets.PAT }}
  
   call-deploy-workflow:
     uses: dongd-wang/xdong1/.github/workflows/main_okteto.yml@main
