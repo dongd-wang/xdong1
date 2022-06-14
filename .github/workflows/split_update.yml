@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: split
-          github_token: ${{ secrets.PAT }}
+          token: ${{ secrets.PAT }}
 
       # You can make whatever type of change to the repo...
       - name: Update
