@@ -37,9 +37,9 @@ jobs:
           add: 'src/version.py --force'
           github_token: ${{ secrets.PAT }}
           
-  call-deploy-workflow:
-    uses: dongd-wang/xdong1/.github/workflows/split_deploy.yml@split
-    secrets:
-      OKTETO_TOKEN: ${{ secrets.OKTETO_TOKEN }}
+#   call-deploy-workflow:
+#     uses: dongd-wang/xdong1/.github/workflows/split_deploy.yml@split
+#     secrets:
+#       OKTETO_TOKEN: ${{ secrets.OKTETO_TOKEN }}
     
     
