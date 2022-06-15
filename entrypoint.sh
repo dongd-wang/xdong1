@@ -102,4 +102,5 @@ mkdir /var/log/supervisor
 # ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
 # nginx -g 'daemon off;'
+nginx -t
 supervisord -c /etc/supervisord.conf
