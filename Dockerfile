@@ -11,7 +11,6 @@ RUN apt-get update && \
     pip install pex==2.1.54
 
 COPY pyproject.toml poetry.lock Makefile /app/
-COPY .git /app/.git
 COPY src /app/src
 COPY resources /app/resources
 
