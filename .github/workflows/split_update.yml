@@ -2,11 +2,11 @@ name: "Sync split"
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
-on:
-  push:
-    branches: ["split"]
-  schedule:
-    - cron: '30 0/4 * * *'
+# on:
+#   push:
+#     branches: ["split"]
+#   schedule:
+#     - cron: '30 0/4 * * *'
   workflow_dispatch:
 
 jobs:
