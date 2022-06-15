@@ -43,6 +43,10 @@
     "V2_URL": {
       "description": "V2_URL",
        "value": ""
+    },
+    "PORT": {
+      "description": "PORT",
+      "value": "80"
     }
   },
   "website": "",
