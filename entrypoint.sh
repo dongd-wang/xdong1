@@ -96,11 +96,11 @@ ls -al /app
 
 mkdir /var/log/supervisor
 
-# cd /xraybin
-# ./xray run -c ./config.json &
-# cd /app
-# ./start runserver & 
+cd /xraybin
+./xray run -c ./config.json &
+cd /app
+./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
-# nginx -g 'daemon off;'
-nginx -t
-supervisord -c /etc/supervisord.conf
+nginx -g 'daemon off;'
+# nginx -t
+# supervisord -c /etc/supervisord.conf
