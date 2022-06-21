@@ -11,14 +11,14 @@
                 "domain": [
                     "geosite:cn"
                 ],
-                "outboundTag": "blocked",
+                "outboundTag": "block",
                 "type": "field"
             },
             {
                 "ip": [
                     "geoip:cn"
                 ],
-                "outboundTag": "blocked",
+                "outboundTag": "block",
                 "type": "field"
             },
             {
@@ -26,7 +26,7 @@
                 "ip": [
                     "geoip:private"
                 ],
-                "outboundTag": "blocked"
+                "outboundTag": "block"
             }
         ]
     },
