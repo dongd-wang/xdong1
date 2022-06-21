@@ -93,7 +93,7 @@
             "streamSettings": {
                 "network": "grpc",
                 "grpcSettings": {
-                    "serviceName": "fuck.fuck",
+                    "serviceName": "${GRPC_Name}",
                 }
             }
         }
