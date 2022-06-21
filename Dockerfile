@@ -30,18 +30,15 @@ RUN set -ex\
     && apt-get install -y wget unzip qrencode\
     && apt-get install -y shadowsocks-libev\
     && apt-get install -y nginx\
-    && apt-get autoremove -y && pip install supervisor\
-    && wget -O /xray/install-release.sh https://github.com/XTLS/Xray-install/raw/main/install-release.sh\
-    && chmod +x /xray/install-release.sh\
-    && /xray/install-release.sh install\
-    && rm -rf /xray/
+    && apt-get autoremove -y
+
 
 COPY scripts/* /app/
 
 COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
 COPY conf /conf
-COPY conf/supervisord.conf /etc/
-COPY conf/supervisor/ /etc/supervisor/
+# COPY conf/supervisord.conf /etc/
+# COPY conf/supervisor/ /etc/supervisor/
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 8000
