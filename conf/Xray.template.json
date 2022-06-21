@@ -5,8 +5,22 @@
         "loglevel": "warning"
     },
     "routing": {
-        "domainStrategy": "AsIs",
+        "domainStrategy": "IPIfNonMatch",
         "rules": [
+            {
+                "domain": [
+                    "geosite:cn"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            },
+            {
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            },
             {
                 "type": "field",
                 "ip": [
