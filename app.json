@@ -29,7 +29,7 @@
     
     "GRPC_Name": {
       "description": "grpc",
-      "value": "/grpc"
+      "value": "grpc"
     },
     
     "Share_Path": {
