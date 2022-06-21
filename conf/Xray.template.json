@@ -75,6 +75,27 @@
                     "path": "${Vmess_Path}"
                 }
             }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 12347,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                    "id": "${Vmess_UUID}",
+                    "alterId": 0,
+                    "email": "peace@xray.com"
+                    }
+                ],
+                "disableInsecureEncryption": false
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "grpcSettings": {
+                    "serviceName": "fuck.fuck",
+                }
+            }
         }
     ],
     "outbounds": [
