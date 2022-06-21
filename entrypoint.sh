@@ -111,9 +111,9 @@ sed -e "/^#/d"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
-    /conf/Xray.template.json >  /xraybin/config.json
-echo /xraybin/config.json
-cat /xraybin/config.json 
+    /conf/Xray.template.json >  /etc/xray/config.json
+echo /etc/xray/config.json
+cat /etc/xray/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/proxy_pass/g"
@@ -151,7 +151,7 @@ mkdir /var/log/supervisor
 
 # cd /xraybin
 # ./xray run -c ./config.json &
-/usr/bin/xray run -c /xraybin/config.json  &
+/usr/bin/xray run -c /etc/xray/config.json  &
 cd /app
 ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
