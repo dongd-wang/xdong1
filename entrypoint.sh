@@ -38,15 +38,20 @@ else
   VER="v$VER"
 fi
 
+
 mkdir /xraybin
 cd /xraybin
-RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
-echo ${RAY_URL}
-wget --no-check-certificate ${RAY_URL}
-unzip Xray-linux-64.zip
-rm -f Xray-linux-64.zip
-chmod +x ./xray
-ls -al
+curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+chmod +x install-release.sh
+./install-release.sh install
+
+# RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
+# echo ${RAY_URL}
+# wget --no-check-certificate ${RAY_URL}
+# unzip Xray-linux-64.zip
+# rm -f Xray-linux-64.zip
+# chmod +x ./xray
+# ls -al
 
 cd /wwwroot
 tar xvf wwwroot.tar.gz
@@ -60,7 +65,9 @@ sed -e "/^#/d"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     /conf/Xray.template.json >  /xraybin/config.json
 echo /xraybin/config.json
-cat /xraybin/config.json
+cp /xraybin/config.json /usr/local/etc/xray/config.json
+ls /usr/local/etc/xray/
+cat /usr/local/etc/xray/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/proxy_pass/g"
@@ -96,11 +103,14 @@ ls -al /app
 
 mkdir /var/log/supervisor
 
-cd /xraybin
-./xray run -c ./config.json &
+# cd /xraybin
+# ./xray run -c ./config.json &
+service xray start
 cd /app
 ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
+nginx -V
+nginx -t
 nginx -g 'daemon off;'
 # nginx -t
 # supervisord -c /etc/supervisord.conf
