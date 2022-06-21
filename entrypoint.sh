@@ -41,7 +41,7 @@ fi
 
 mkdir /xraybin
 cd /xraybin
-curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+wget --no-check-certificate https://github.com/XTLS/Xray-install/raw/main/install-release.sh
 chmod +x install-release.sh
 ./install-release.sh install
 
