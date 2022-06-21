@@ -41,9 +41,6 @@ fi
 
 # mkdir /xraybin
 # cd /xraybin
-# wget --no-check-certificate https://github.com/XTLS/Xray-install/raw/main/install-release.sh
-# chmod +x install-release.sh
-# sudo -c ./install-release.sh install
 
 # RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
 # echo ${RAY_URL}
@@ -52,6 +49,57 @@ fi
 # rm -f Xray-linux-64.zip
 # chmod +x ./xray
 # ls -al
+
+# ==================================
+PLATFORM=$1
+if [ -z "$PLATFORM" ]; then
+    ARCH="amd64"
+else
+    case "$PLATFORM" in
+        linux/386)
+            ARCH="386"
+            ;;
+        linux/amd64)
+            ARCH="amd64"
+            ;;
+        linux/arm/v6)
+            ARCH="arm6"
+            ;;
+        linux/arm/v7)
+            ARCH="arm7"
+            ;;
+        linux/arm64|linux/arm64/v8)
+            ARCH="arm64"
+            ;;
+        linux/ppc64le)
+            ARCH="ppc64le"
+            ;;
+        linux/s390x)
+            ARCH="s390x"
+            ;;
+        *)
+            ARCH=""
+            ;;
+    esac
+fi
+[ -z "${ARCH}" ] && echo "Error: Not supported OS Architecture" && exit 1
+# Download binary file
+XRAY_FILE="xray_linux_${ARCH}"
+
+echo "Downloading binary file: ${XRAY_FILE}"
+wget -O /usr/bin/xray https://dl.lamp.sh/files/${XRAY_FILE} > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to download binary file: ${XRAY_FILE}" && exit 1
+fi
+echo "Download binary file: ${XRAY_FILE} completed"
+
+chmod +x /usr/bin/xray
+# ==================================
+
+
+
+
+
 
 cd /wwwroot
 tar xvf wwwroot.tar.gz
@@ -65,9 +113,9 @@ sed -e "/^#/d"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     /conf/Xray.template.json >  /xraybin/config.json
 echo /xraybin/config.json
-cp /xraybin/config.json /usr/local/etc/xray/config.json
-ls /usr/local/etc/xray/
-cat /usr/local/etc/xray/config.json
+cp /xraybin/config.json /etc/xray/config.json
+ls /etc/xray/
+cat /etc/xray/config.json
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/proxy_pass/g"
@@ -105,7 +153,7 @@ mkdir /var/log/supervisor
 
 # cd /xraybin
 # ./xray run -c ./config.json &
-service xray start
+/usr/bin/xray run -c /etc/xray/config.json &
 cd /app
 ./start runserver & 
 rm -rf /etc/nginx/sites-enabled/default
