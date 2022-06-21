@@ -18,7 +18,7 @@ RUN make package
 
 FROM python:3.9.12-slim-bullseye
 
-RUN mkdir /app \
+RUN mkdir /app\
     && mkdir /app/logs\
     && mkdir /xray
 
@@ -31,8 +31,8 @@ RUN set -ex\
     && apt-get install -y shadowsocks-libev\
     && apt-get install -y nginx\
     && apt-get autoremove -y && pip install supervisor\
-    && wget -O /xray/install-release.sh https://github.com/XTLS/Xray-install/raw/main/install-release.sh
-    && /xray/install-release.sh install
+    && wget -O /xray/install-release.sh https://github.com/XTLS/Xray-install/raw/main/install-release.sh\
+    && /xray/install-release.sh install\
     && rm -rf /xray/
 
 COPY scripts/* /app/
