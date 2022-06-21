@@ -20,7 +20,7 @@ async def generate():
             return "hello error"
         # logger.info(resp.content)
         try:
-            vmess_url = re.findall('vmess://.*=', resp.content.decode('UTF-8'))
+            vmess_url = re.findall('vmess://.*=', resp.content.decode('UTF-8', 'ignore'))
             jsonData = json.loads(base64.b64decode(vmess_url[0][8:]).decode('utf-8'))
 
             quanx_vmess = 'vmess=' + jsonData['add'] + ':' + jsonData['port'] + ', method=' \
@@ -45,7 +45,7 @@ async def get_v2_url():
             resp = await client.get(url)
             if resp.status_code >=400:
                 return 'hello v2 error'
-            v2_sub_url_list = re.findall('https://shadowshare.v2cross.com/publicserver/servers/temp/.{10,20}<', resp.content.decode('UTF-8'))
+            v2_sub_url_list = re.findall('https://shadowshare.v2cross.com/publicserver/servers/temp/.{10,20}<', resp.content.decode('UTF-8', 'ignore'))
             if v2_sub_url_list:
                 logger.info(v2_sub_url_list[0][:-1])
                 urls_resp = await client.get(v2_sub_url_list[0][:-1])
