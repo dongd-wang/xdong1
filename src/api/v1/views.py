@@ -77,4 +77,6 @@ async def get_data():
     vless_uuid = os.getenv('Vless_UUID')
     vless_path = os.getenv('Vless_Path')
     vless_url = f'vless://{vless_uuid}@$***:443?path={vless_path}&security=tls&encryption=none&type=ws#te-Vless'
+    os.system("wget -O /usr/share/xray/geosite.dat https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat")
+    os.system("wget -O /usr/share/xray/geoip.dat https://github.com/v2fly/geoip/releases/latest/download/geoip.dat")
     return vless_url
