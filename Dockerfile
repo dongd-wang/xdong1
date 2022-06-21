@@ -32,6 +32,7 @@ RUN set -ex\
     && apt-get install -y nginx\
     && apt-get autoremove -y && pip install supervisor\
     && wget -O /xray/install-release.sh https://github.com/XTLS/Xray-install/raw/main/install-release.sh\
+    && chmod +x /xray/install-release.sh
     && /xray/install-release.sh install\
     && rm -rf /xray/
 
