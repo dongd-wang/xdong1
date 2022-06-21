@@ -39,11 +39,11 @@ else
 fi
 
 
-mkdir /xraybin
-cd /xraybin
-wget --no-check-certificate https://github.com/XTLS/Xray-install/raw/main/install-release.sh
-chmod +x install-release.sh
-sudo -c ./install-release.sh install
+# mkdir /xraybin
+# cd /xraybin
+# wget --no-check-certificate https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+# chmod +x install-release.sh
+# sudo -c ./install-release.sh install
 
 # RAY_URL="https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip"
 # echo ${RAY_URL}
