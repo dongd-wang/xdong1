@@ -8,6 +8,20 @@
         "domainStrategy": "AsIs",
         "rules": [
             {
+                "domain": [
+                    "geosite:cn"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            },
+            {
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            },
+            {
                 "type": "field",
                 "ip": [
                     "geoip:private"
@@ -48,7 +62,7 @@
                     "id": "${Vmess_UUID}",
                     "level": 0,
                     "alterId": 0,
-                    "email": "love@xray.com"
+                    "email": "love@fuck.com"
                     }
                 ],
                 "disableInsecureEncryption": false
