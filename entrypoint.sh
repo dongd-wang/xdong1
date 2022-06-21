@@ -111,6 +111,7 @@ sed -e "/^#/d"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
+    -e "s|\${GRPC_Name}|${GRPC_Name}|g"\
     /conf/Xray.template.json >  /etc/xray/config.json
 echo /etc/xray/config.json
 cat /etc/xray/config.json
@@ -128,6 +129,7 @@ sed -e "/^#/d"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     -e "s|\${Share_Path}|${Share_Path}|g"\
+    -e "s|\${GRPC_Name}|${GRPC_Name}|g"\
     -e "$s"\
     /conf/nginx.template.conf > /etc/nginx/conf.d/ray.conf
 echo /etc/nginx/conf.d/ray.conf
