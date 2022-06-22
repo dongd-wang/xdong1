@@ -83,7 +83,7 @@
             "settings": {
                 "clients": [
                     {
-                    "id": "${Vmess_UUID}",
+                    "id": "${Vmess_UUID}"
                     }
                 ],
                 "decryption": "none"
