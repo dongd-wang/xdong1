@@ -32,7 +32,7 @@
     },
     "inbounds": [
         {
-            "listen": "0.0.0.0",
+            "listen": "127.0.0.1",
             "port": 12345,
             "protocol": "vless",
             "settings": {
@@ -53,7 +53,7 @@
             }
         },
         {
-            "listen": "0.0.0.0",
+            "listen": "127.0.0.1",
             "port": 12346,
             "protocol": "vmess",
             "settings": {
@@ -84,18 +84,25 @@
                 "clients": [
                     {
                     "id": "${Vmess_UUID}",
-                    "alterId": 0,
-                    "email": "peace@xray.com"
+                    "email": "peace@gmail.com"
                     }
                 ],
                 "disableInsecureEncryption": false
             },
             "streamSettings": {
                 "network": "grpc",
+                "security": "none",
                 "grpcSettings": {
                     "serviceName": "${GRPC_Name}"
                 }
-            }
+            },
+          "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                  "http",
+                  "tls"
+                ]
+              }
         }
     ],
     "outbounds": [
