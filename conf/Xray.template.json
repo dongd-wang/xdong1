@@ -79,19 +79,17 @@
         {
             "listen": "127.0.0.1",
             "port": 12347,
-            "protocol": "vmess",
+            "protocol": "vless",
             "settings": {
                 "clients": [
                     {
                     "id": "${Vmess_UUID}",
-                    "email": "peace@gmail.com"
                     }
                 ],
-                "disableInsecureEncryption": false
+                "decryption": "none"
             },
             "streamSettings": {
                 "network": "grpc",
-                "security": "none",
                 "grpcSettings": {
                     "serviceName": "${GRPC_Name}"
                 }
