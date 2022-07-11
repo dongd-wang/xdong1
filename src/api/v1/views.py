@@ -31,7 +31,7 @@ async def generate():
             quanx_vmess2 = 'vmess=app.ssfree.ru:' + jsonData['port'] + ', method=' \
                 + jsonData['type'] + ', password=' + jsonData['id'] + ', obfs=wss, obfs-host=' \
                     + jsonData['add'] + ', obfs-uri=' + jsonData['path'] \
-                        + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree_US_美国_' \
+                        + ', tls-verification=false, fast-open=false, udp-relay=false, aead=false, tag=ssfree2_US_美国_' \
                         + str(time.time())
             with open('/tmp/subscribe', 'w', encoding='utf-8') as f:
                 f.write(quanx_vmess + '\n')
